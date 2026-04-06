@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  /* Apple typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* Apple colors */
+  --color-apple-blue:  #007AFF;
+  --color-apple-green: #34C759;
+  --color-apple-red:   #FF3B30;
+  --color-apple-gray1: #8E8E93;
+  --color-apple-gray2: #AEAEB2;
+  --color-apple-gray3: #C7C7CC;
+  --color-apple-gray4: #D1D1D6;
+  --color-apple-gray5: #E5E5EA;
+  --color-apple-gray6: #F2F2F7;
+
+  /* Radii */
+  --radius-xl:  16px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+
+  /* Shadows */
+  --shadow-glass: 0 8px 32px 0 rgba(0,0,0,0.08);
+  --shadow-card:  0 2px 16px 0 rgba(0,0,0,0.06);
+}
+
+body {
+  background: var(--color-apple-gray6);
+  color: #1c1c1e;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3 { letter-spacing: -0.02em; }
+
+@layer utilities {
+  .glass {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: var(--shadow-glass);
+  }
+  .glass-card {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(209,209,214,0.5);
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-3xl);
+  }
+}
