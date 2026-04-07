@@ -14,15 +14,13 @@ export function NavBar() {
         <Link href="/" className="text-lg font-semibold tracking-tight text-gray-900">
           Reserve
         </Link>
-        <nav className="flex items-center gap-6 text-sm" style={{ color: "var(--color-apple-gray1)" }}>
-          <Link href="/book" className="hover:text-gray-900 transition-colors">
-            Book a table
-          </Link>
+        <nav className="flex items-center">
           <Link
             href="/admin"
-            className="px-3 py-1.5 rounded-lg bg-gray-900 text-white text-xs font-medium hover:bg-gray-700 transition-colors"
+            className="text-xs transition-colors"
+            style={{ color: "var(--color-apple-gray3)" }}
           >
-            Admin
+            Staff
           </Link>
         </nav>
       </div>
