@@ -19,6 +19,7 @@ class Channel(str, enum.Enum):
     whatsapp = "whatsapp"
     line = "line"
     messenger = "messenger"
+    walk_in = "walk_in"
 
 
 class Guest(Base):

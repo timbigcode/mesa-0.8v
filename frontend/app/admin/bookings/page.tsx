@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useBookings } from "@/hooks/useBookings";
 import BookingsTable from "@/components/admin/BookingsTable";
+import WalkInModal from "@/components/admin/WalkInModal";
 
 const STATUSES = [
   { value: "", label: "All statuses" },
@@ -17,6 +18,7 @@ const inputStyle = {
 
 export default function BookingsPage() {
   const [date, setDate] = useState("");
+  const [showWalkIn, setShowWalkIn] = useState(false);
   const [status, setStatus] = useState("");
   const [guestName, setGuestName] = useState("");
   const [debouncedGuestName, setDebouncedGuestName] = useState("");
@@ -36,6 +38,13 @@ export default function BookingsPage() {
     <div>
       <div className="flex flex-wrap items-center gap-3 mb-6">
         <h1 className="text-2xl font-semibold text-gray-900 flex-1">Bookings</h1>
+        <button
+          onClick={() => setShowWalkIn(true)}
+          className="px-4 py-2 rounded-xl text-sm font-semibold text-white"
+          style={{ background: "#1c1c1e" }}
+        >
+          + Walk-in
+        </button>
         <input
           type="text"
           placeholder="Guest name…"
@@ -72,5 +81,12 @@ export default function BookingsPage() {
         )}
       </div>
     </div>
+
+    {showWalkIn && (
+      <WalkInModal
+        onClose={() => setShowWalkIn(false)}
+        onCreated={() => mutate()}
+      />
+    )}
   );
 }

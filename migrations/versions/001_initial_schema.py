@@ -20,7 +20,7 @@ RLS_TABLES = [
 
 # PostgreSQL ENUM references — create_type=False means "type already exists, don't create"
 locationtype   = ENUM("indoor","outdoor","bar","private",         name="locationtype",   create_type=False)
-channel        = ENUM("phone","web","whatsapp","line","messenger", name="channel",        create_type=False)
+channel        = ENUM("phone","web","whatsapp","line","messenger","walk_in", name="channel", create_type=False)
 bookingstatus  = ENUM("confirmed","cancelled","no_show","completed",name="bookingstatus", create_type=False)
 ruletype       = ENUM("blackout","special_hours",                  name="ruletype",       create_type=False)
 waitliststatus = ENUM("waiting","notified","booked","expired",     name="waitliststatus", create_type=False)
