@@ -8,6 +8,8 @@ export interface AdminTable {
   capacity: number;
   location_type: string;
   is_active: boolean;
+  floor_plan_x: number | null;
+  floor_plan_y: number | null;
 }
 
 async function fetcher(url: string) {

@@ -12,31 +12,40 @@ export default function SlotsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-900 mb-6">Time Slots</h1>
-      <div className="glass-card overflow-hidden p-0" style={{ borderRadius: "20px" }}>
+      <h1 className="text-xl font-semibold mb-6" style={{ color: "var(--color-n-900)" }}>Time Slots</h1>
+      <div className="glass-card overflow-hidden" style={{ padding: 0 }}>
         {loading ? (
-          <div className="p-12 text-center text-sm" style={{ color: "var(--color-apple-gray1)" }}>Loading…</div>
+          <div className="flex items-center justify-center gap-2 p-12 text-[13px]" style={{ color: "var(--color-n-400)" }}>
+            <div className="w-4 h-4 rounded-full border-2 border-t-transparent animate-spin" style={{ borderColor: "var(--color-n-300)", borderTopColor: "var(--color-n-800)" }} />
+            Loading...
+          </div>
         ) : (
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b" style={{ borderColor: "rgba(209,209,214,0.4)" }}>
+              <tr style={{ borderBottom: "1px solid var(--color-n-200)" }}>
                 {["Day", "Start Time", "Duration", "Status", ""].map((h) => (
-                  <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wide" style={{ color: "var(--color-apple-gray1)" }}>{h}</th>
+                  <th key={h} className="text-left py-3 px-4 text-[11px] font-semibold uppercase tracking-wider" style={{ color: "var(--color-n-400)" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {slots.map((s) => (
-                <tr key={s.id} className="border-b transition-colors hover:bg-white/40" style={{ borderColor: "rgba(209,209,214,0.3)" }}>
-                  <td className="py-3 px-4 font-medium text-gray-900">{dayName(s.day_of_week)}</td>
-                  <td className="py-3 px-4 text-gray-700">{s.start_time.slice(0, 5)}</td>
-                  <td className="py-3 px-4" style={{ color: "var(--color-apple-gray1)" }}>{s.duration_minutes} min</td>
+                <tr
+                  key={s.id}
+                  className="transition-colors"
+                  style={{ borderBottom: "1px solid var(--color-n-100)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--color-n-50)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                >
+                  <td className="py-3 px-4 font-medium" style={{ color: "var(--color-n-900)" }}>{dayName(s.day_of_week)}</td>
+                  <td className="py-3 px-4" style={{ color: "var(--color-n-600)" }}>{s.start_time.slice(0, 5)}</td>
+                  <td className="py-3 px-4" style={{ color: "var(--color-n-500)" }}>{s.duration_minutes} min</td>
                   <td className="py-3 px-4">
                     <span
-                      className="px-2 py-1 rounded-full text-xs font-medium"
+                      className="px-2 py-0.5 rounded-md text-[11px] font-medium"
                       style={{
-                        background: s.is_active ? "rgba(52,199,89,0.12)" : "rgba(142,142,147,0.12)",
-                        color: s.is_active ? "#1a7f37" : "#636366",
+                        background: s.is_active ? "rgba(22,163,74,0.08)" : "var(--color-n-100)",
+                        color: s.is_active ? "var(--color-success)" : "var(--color-n-500)",
                       }}
                     >
                       {s.is_active ? "Active" : "Inactive"}
@@ -45,8 +54,8 @@ export default function SlotsPage() {
                   <td className="py-3 px-4">
                     <button
                       onClick={() => toggleActive(s.id, s.is_active)}
-                      className="text-xs hover:underline"
-                      style={{ color: "var(--color-apple-blue)" }}
+                      className="text-[12px] font-medium hover:underline"
+                      style={{ color: "var(--color-brand)" }}
                     >
                       {s.is_active ? "Deactivate" : "Activate"}
                     </button>
@@ -54,7 +63,7 @@ export default function SlotsPage() {
                 </tr>
               ))}
               {slots.length === 0 && (
-                <tr><td colSpan={5} className="py-12 text-center text-sm" style={{ color: "var(--color-apple-gray1)" }}>No slots found.</td></tr>
+                <tr><td colSpan={5} className="py-12 text-center text-[13px]" style={{ color: "var(--color-n-400)" }}>No slots found.</td></tr>
               )}
             </tbody>
           </table>

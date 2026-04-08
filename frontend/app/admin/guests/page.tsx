@@ -31,40 +31,49 @@ export default function GuestsPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900">Guests</h1>
+        <h1 className="text-xl font-semibold" style={{ color: "var(--color-n-900)" }}>Guests</h1>
         <input
           type="search"
-          placeholder="Search by name or phone…"
+          placeholder="Search by name or phone..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="px-4 py-2 rounded-xl text-sm outline-none border bg-white/80 w-64"
-          style={{ borderColor: "rgba(209,209,214,0.5)" }}
+          className="input-field w-64"
+          style={{ padding: "8px 12px", fontSize: "13px" }}
         />
       </div>
-      <div className="glass-card overflow-hidden p-0" style={{ borderRadius: "20px" }}>
+      <div className="glass-card overflow-hidden" style={{ padding: 0 }}>
         {isLoading ? (
-          <div className="p-12 text-center text-sm" style={{ color: "var(--color-apple-gray1)" }}>Loading…</div>
+          <div className="flex items-center justify-center gap-2 p-12 text-[13px]" style={{ color: "var(--color-n-400)" }}>
+            <div className="w-4 h-4 rounded-full border-2 border-t-transparent animate-spin" style={{ borderColor: "var(--color-n-300)", borderTopColor: "var(--color-n-800)" }} />
+            Loading...
+          </div>
         ) : (
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b" style={{ borderColor: "rgba(209,209,214,0.4)" }}>
+              <tr style={{ borderBottom: "1px solid var(--color-n-200)" }}>
                 {["Name", "Phone", "Email", "Visits", "Channel"].map((h) => (
-                  <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wide" style={{ color: "var(--color-apple-gray1)" }}>{h}</th>
+                  <th key={h} className="text-left py-3 px-4 text-[11px] font-semibold uppercase tracking-wider" style={{ color: "var(--color-n-400)" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {filtered.map((g) => (
-                <tr key={g.id} className="border-b transition-colors hover:bg-white/40" style={{ borderColor: "rgba(209,209,214,0.3)" }}>
-                  <td className="py-3 px-4 font-medium text-gray-900">{g.name}</td>
-                  <td className="py-3 px-4" style={{ color: "var(--color-apple-gray1)" }}>{g.phone}</td>
-                  <td className="py-3 px-4" style={{ color: "var(--color-apple-gray1)" }}>{g.email ?? "—"}</td>
-                  <td className="py-3 px-4 font-semibold text-gray-900">{g.visit_count}</td>
-                  <td className="py-3 px-4 capitalize" style={{ color: "var(--color-apple-gray1)" }}>{g.preferred_channel}</td>
+                <tr
+                  key={g.id}
+                  className="transition-colors"
+                  style={{ borderBottom: "1px solid var(--color-n-100)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--color-n-50)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                >
+                  <td className="py-3 px-4 font-medium" style={{ color: "var(--color-n-900)" }}>{g.name}</td>
+                  <td className="py-3 px-4" style={{ color: "var(--color-n-500)" }}>{g.phone}</td>
+                  <td className="py-3 px-4" style={{ color: "var(--color-n-500)" }}>{g.email ?? "—"}</td>
+                  <td className="py-3 px-4 font-semibold" style={{ color: "var(--color-n-900)" }}>{g.visit_count}</td>
+                  <td className="py-3 px-4 capitalize" style={{ color: "var(--color-n-500)" }}>{g.preferred_channel}</td>
                 </tr>
               ))}
               {filtered.length === 0 && (
-                <tr><td colSpan={5} className="py-12 text-center text-sm" style={{ color: "var(--color-apple-gray1)" }}>No guests found.</td></tr>
+                <tr><td colSpan={5} className="py-12 text-center text-[13px]" style={{ color: "var(--color-n-400)" }}>No guests found.</td></tr>
               )}
             </tbody>
           </table>
